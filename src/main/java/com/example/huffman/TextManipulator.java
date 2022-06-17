@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 public class TextManipulator {
 
+    public String encoded;
     String slowo;
     int dlugosc;
     List<Character> uniqueList;

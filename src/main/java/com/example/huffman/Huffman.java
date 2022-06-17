@@ -47,7 +47,8 @@ class Huffman {
     }
 
     // Main Huffman tree build function
-    public static void Main_Build_HuffmanTree(String text) {
+    public static void Main_Build_HuffmanTree(TextManipulator tm) {
+        String text = tm.slowo;
         // Base case: empty string
         if (text == null || text.length() == 0) {
             return;
@@ -93,7 +94,13 @@ class Huffman {
         // Display the Huffman codes
         System.out.println("The Huffman Codes for the given text are: " + huffmanCode);
         System.out.println("The original text is: " + text);
-
+        huffmanCode.forEach((c,s)-> {
+            for(int i=0;i<tm.uniqueList.size();i++)
+            {
+                if(tm.uniqueList.get(i).equals(c)) tm.tab[i][4]=s;
+                System.out.println("przypisano "+ c+ " "+s);
+            }
+        });
         // display the encoded string
         StringBuilder sb = new StringBuilder();
         for (char c : text.toCharArray()) {
@@ -101,6 +108,7 @@ class Huffman {
         }
 
         System.out.println("The encoded text is: " + sb);
+        tm.encoded=sb.toString();
         System.out.print("The decoded text is: ");
 
         if (is_Leaf(root_node)) {
