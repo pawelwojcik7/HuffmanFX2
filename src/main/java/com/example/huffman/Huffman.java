@@ -61,9 +61,11 @@ class Huffman {
             frequency.put(c, frequency.getOrDefault(c, 0) + 1);
         }
 
+
         // priority queue to store nodes of the Huffman tree
         // the highest priority item has the lowest frequency
-
+        SortByValue sort = new SortByValue();
+        //frequency=sort.sortByValue(true, (HashMap<Character, Integer>) frequency);
         PriorityQueue<Huffman_Node> prio_queue;
         prio_queue = new PriorityQueue<>(Comparator.comparingInt(l -> l.frequency));
 
@@ -91,14 +93,13 @@ class Huffman {
         Map<Character, String> huffmanCode = new HashMap<>();
         encode_huffman(root_node, "", huffmanCode);
 
-        // Display the Huffman codes
+// Display the Huffman codes
         System.out.println("The Huffman Codes for the given text are: " + huffmanCode);
         System.out.println("The original text is: " + text);
         huffmanCode.forEach((c,s)-> {
             for(int i=0;i<tm.uniqueList.size();i++)
             {
                 if(tm.uniqueList.get(i).equals(c)) tm.tab[i][4]=s;
-                System.out.println("przypisano "+ c+ " "+s);
             }
         });
         // display the encoded string

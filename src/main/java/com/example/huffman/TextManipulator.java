@@ -23,13 +23,9 @@ public class TextManipulator {
         this.occurrencesList=charsOccurrences(chars,uniqueList);
         this.charsProbabilityList= charsProbability(occurrencesList);
         this.tab=makeArray();
-        Arrays.sort(tab, new Comparator<String[]>() {
-            @Override
-            public int compare(String[] o1, String[] o2) {
-                if(Double.parseDouble(o1[3])>Double.parseDouble(o2[3])) return 1;
-                else return -1;
-            }
-        });
+
+
+
     }
 
     public static List<Character> convertStringToCharList(String str) { // konwersja łańcucha znaków na Listę znaków
@@ -78,5 +74,16 @@ public class TextManipulator {
 
         }
         return table;
+    }
+    public String[][] sortArray(String[][] tablica)
+    {
+        Arrays.sort(tablica, new Comparator<String[]>() {
+            @Override
+            public int compare(String[] o1, String[] o2) {
+                if(Double.parseDouble(o1[3])>Double.parseDouble(o2[3])) return 1;
+                else return -1;
+            }
+        });
+        return tablica;
     }
 }

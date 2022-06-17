@@ -41,19 +41,25 @@ public class Controller implements Initializable {
 
 
     public void huffmanMethod(ActionEvent e) {
-        System.out.println("tu jestem");
         word = textArea1.getText();
-        System.out.println(word + " slowo");
         TextManipulator tm = new TextManipulator(word);
         Main_Build_HuffmanTree(tm);
+
         data = tm.tab;
-        Data wiersz = new Data();
+        data=tm.sortArray(data);
+        Double entropy = 0.00;
+        Double wordSize = 0.00;
+        for(int i=0;i<tm.uniqueList.size();i++){
+            entropy = entropy + Double.parseDouble(data[i][3]) * (Math.log(1 / Double.parseDouble(data[i][3])) / Math.log(2));
+        wordSize=wordSize + Double.parseDouble(data[i][3]) * data[i][4].length();
+        }
         ObservableList<Data> list = FXCollections.observableArrayList();
         for(int i = 0; i < tm.uniqueList.size(); i++) {
-            wiersz = new Data(data[i][0], data[i][1], data[i][2], data[i][3], data[i][4]);
+            Data wiersz = new Data(data[i][0], data[i][1], data[i][2], data[i][3], data[i][4]);
             list.add(wiersz);
         }
         tableView.setItems(list);
+        textArea2.setText("Zaszyfrowane słowo : "+ tm.encoded + "\n" + "Wartośc entropii : "+ entropy +"\n" + "Srednia długość słowa kodowego : " + wordSize);
 
 
 
@@ -79,5 +85,8 @@ public class Controller implements Initializable {
         probability.setCellValueFactory(new PropertyValueFactory<Data, String>("probability"));
         code.setCellValueFactory(new PropertyValueFactory<Data, String>("code"));
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        textArea2.setWrapText(true);
+        textArea1.setWrapText(true);
+        textArea2.setEditable(false);
     }
 }
