@@ -6,9 +6,9 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.huffman.TreeViewerController">
    <children>
-      <ScrollPane fx:id="scrollPane" prefHeight="400.0" prefWidth="600.0">
+      <ScrollPane fx:id="scrollPane" prefHeight="900.0" prefWidth="1600.0">
          <content>
-            <Pane fx:id="pane" prefHeight="398.0" prefWidth="597.0" />
+            <Pane fx:id="pane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="900.0" prefWidth="1600.0" />
          </content></ScrollPane>
    </children>
 </AnchorPane>

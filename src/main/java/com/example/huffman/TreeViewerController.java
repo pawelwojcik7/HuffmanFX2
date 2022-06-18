@@ -26,10 +26,10 @@ public class TreeViewerController implements Initializable {
 
     void initData(Huffman_Node huffman_node) {
         node = huffman_node;
-        drawNodeRecursive(300, 25,node);
+        drawNodeRecursive(800, 25, 400, node);
     }
 
-    public void drawNodeRecursive(int x, int y, Huffman_Node node) { // rysowanie drzewka
+    public void drawNodeRecursive(int x, int y,int z, Huffman_Node node) { // rysowanie drzewka
 
         if (node.charac != null) { // jezeli node nie ma znaku to znaczy że jest wezłem sumy
             Circle circle = new Circle(x, y, 15, Paint.valueOf("blue")); // rysowanie niebieskiego kółka x,y promien 15
@@ -49,13 +49,13 @@ public class TreeViewerController implements Initializable {
         }
 
         if (node.left != null){
-            Line line = new Line(x-30, y + 30, x-10, y+10);
+            Line line = new Line(x-z, y + 30, x-10, y+10);
             pane.getChildren().add(line);
-            drawNodeRecursive(x - (30), y + 30, node.left);}
+            drawNodeRecursive(x-z, y + 30,(int)Math.floor(z/2), node.left);}
         if (node.right != null) {
-            Line line = new Line(x+30, y + 30, x+10, y+10);
+            Line line = new Line(x+z, y + 30, x+10, y+10);
             pane.getChildren().add(line);
-            drawNodeRecursive( x + (30), y + 30, node.right);
+            drawNodeRecursive(x+z, y + 30, (int)Math.floor(z/2), node.right);
         }
     }
 }

@@ -21,7 +21,7 @@ public class TreeViewer {
         Parent root1= (Parent) fxmlLoader.load();
         Stage stage = new Stage();
         stage.setTitle("TreeViewer");
-        stage.setScene(new Scene(root1, 600, 600));
+        stage.setScene(new Scene(root1, 1600, 900));
         stage.setResizable(false);
         TreeViewerController controller = fxmlLoader.getController();
         controller.initData(root);
