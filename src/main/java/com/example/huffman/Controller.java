@@ -11,6 +11,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -39,11 +40,12 @@ public class Controller implements Initializable {
     @FXML
     private TableColumn<Data, String> probability;
 
+    Huffman_Node root;
 
     public void huffmanMethod(ActionEvent e) {
         word = textArea1.getText();
         TextManipulator tm = new TextManipulator(word);
-        Main_Build_HuffmanTree(tm);
+        root = Main_Build_HuffmanTree(tm);
 
         data = tm.tab;
         data=tm.sortArray(data);
@@ -73,8 +75,10 @@ public class Controller implements Initializable {
 
     }
 
-    public void Drzewo(ActionEvent e) {
-
+    public void drzewo(ActionEvent e) throws IOException {
+        if(root!=null) {
+            TreeViewer treeViewer = new TreeViewer(root);
+        }
     }
 
     @Override

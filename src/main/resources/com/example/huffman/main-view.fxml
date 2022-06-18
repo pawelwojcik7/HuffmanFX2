@@ -23,7 +23,7 @@
         <Button fx:id="huffmanButton" layoutX="14.0" layoutY="45.0" mnemonicParsing="false" onAction="#huffmanMethod" text="Huffman" />
         <Button layoutX="88.0" layoutY="45.0" mnemonicParsing="false" text="FGK" />
         <Button layoutX="12.0" layoutY="75.0" mnemonicParsing="false" text="Vitter" />
-        <Button layoutX="88.0" layoutY="75.0" mnemonicParsing="false" text="Drzewo" />
+        <Button fx:id="drzewo" layoutX="88.0" layoutY="75.0" mnemonicParsing="false" onAction="#drzewo" text="Drzewo" />
         <Label layoutX="18.0" layoutY="20.0" text="Podaj słowo do zakodowania" />
         <Label layoutX="16.0" layoutY="142.0" text="Wyniki" />
       <TableView fx:id="tableView" layoutX="18.0" layoutY="239.0" prefHeight="147.0" prefWidth="566.0">

@@ -47,11 +47,11 @@ class Huffman {
     }
 
     // Main Huffman tree build function
-    public static void Main_Build_HuffmanTree(TextManipulator tm) {
+    public static Huffman_Node Main_Build_HuffmanTree(TextManipulator tm) {
         String text = tm.slowo;
         // Base case: empty string
         if (text == null || text.length() == 0) {
-            return;
+            return null;
         }
 
         // Calculate the frequency of each character and store it in a map of dict
@@ -124,6 +124,7 @@ class Huffman {
                 index = decode_huffman(root_node, index, sb);
             }
         }
+        return root_node;
     }
 
 
