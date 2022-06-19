@@ -81,7 +81,7 @@ public class TreeViewerController {
             drawNodes(root.left, y + 90, i + 1);
         }
         if (root.right != null) {
-            int x2 = (int) Math.floor(1600 / (list2.get(i + 1) + 1));@(3TFR4)
+            int x2 = (int) Math.floor(1600 / (list2.get(i + 1) + 1));
             drawNodes(root.right, y + 90, i + 1);
         }
 
