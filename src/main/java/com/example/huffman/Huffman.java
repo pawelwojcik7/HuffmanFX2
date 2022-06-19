@@ -88,7 +88,6 @@ class Huffman {
         }
 
         Huffman_Node root_node = prio_queue.peek();
-
         // Huffman tree Traversing and storing the Huffman codes in a dict or map
         Map<Character, String> huffmanCode = new HashMap<>();
         encode_huffman(root_node, "", huffmanCode);
@@ -124,8 +123,15 @@ class Huffman {
                 index = decode_huffman(root_node, index, sb);
             }
         }
+        levelAndIndexSet(root_node, 1,1);
         return root_node;
     }
-
+    public static void levelAndIndexSet(Huffman_Node node, int level, int index)
+    {
+        node.level=level;
+        node.index=index;
+        if(node.left!=null) levelAndIndexSet(node.left, level+1,index*2-1);
+        if(node.right!=null) levelAndIndexSet(node.right, level+1, index*2);
+    }
 
 }

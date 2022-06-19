@@ -19,7 +19,6 @@ import static com.example.huffman.Huffman.Main_Build_HuffmanTree;
 
 
 public class Controller implements Initializable {
-    String[] columns = {"id", "char", "weight", "probability", "code"};
     String[][] data;
     String word;
     @FXML
@@ -61,7 +60,7 @@ public class Controller implements Initializable {
             list.add(wiersz);
         }
         tableView.setItems(list);
-        textArea2.setText("Zaszyfrowane słowo : "+ tm.encoded + "\n" + "Wartośc entropii : "+ entropy +"\n" + "Srednia długość słowa kodowego : " + wordSize);
+        textArea2.setText("Zaszyfrowane słowo : "+ tm.encoded + "\n" + "Wartośc entropii : "+ entropy +"\n" + "Średnia długość słowa kodowego : " + wordSize+"\n" + "Zaokrąglona średnia długość słowa kodowego : " + Math.round(wordSize));
 
 
 

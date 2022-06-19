@@ -15,6 +15,8 @@ class Huffman_Node
     Integer frequency;
     Huffman_Node left = null, right = null;
 
+    int x,y, level, index;
+
     Huffman_Node(Character charac, Integer frequency)
     {
         this.charac = charac;
