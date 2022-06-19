@@ -15,15 +15,15 @@ public class TextManipulator {
     List<Double> charsProbabilityList;
 
     String[][] tab;
+
     public TextManipulator(String str) {
         this.slowo = str;
         this.dlugosc = str.length();
         this.chars = convertStringToCharList(str);
         this.uniqueList = uniqueCharsFromList(chars);
-        this.occurrencesList=charsOccurrences(chars,uniqueList);
-        this.charsProbabilityList= charsProbability(occurrencesList);
-        this.tab=makeArray();
-
+        this.occurrencesList = charsOccurrences(chars, uniqueList);
+        this.charsProbabilityList = charsProbability(occurrencesList);
+        this.tab = makeArray();
 
 
     }
@@ -58,29 +58,28 @@ public class TextManipulator {
     public static List<Double> charsProbability(List<Integer> occurrencesList) { // wyliczenie prawdopodobieństw
         List<Double> charsProbabilityList = new ArrayList<>(); // lista prawdopodobienstw
         int suma = occurrencesList.stream().mapToInt(Integer::intValue).sum(); // suma elementow z listy
-        charsProbabilityList = occurrencesList.stream().map(e -> (double) Math.round(e*10000000 / suma)/10000000).collect(Collectors.toList());
+        charsProbabilityList = occurrencesList.stream().map(e -> (double) Math.round(e * 10000000 / suma) / 10000000).collect(Collectors.toList());
         return charsProbabilityList;
     }
-    public String[][] makeArray()
-    {
+
+    public String[][] makeArray() {
         String[][] table = new String[this.uniqueList.size()][5];
-        for(int i=0;i<this.uniqueList.size();i++)
-        {
-            table[i][0]= String.valueOf(i);
-            table[i][1]=String.valueOf(this.uniqueList.get(i));
-            table[i][2]=String.valueOf(this.occurrencesList.get(i));
-            table[i][3]=String.valueOf(this.charsProbabilityList.get(i));
-            table[i][4]= String.valueOf("0");
+        for (int i = 0; i < this.uniqueList.size(); i++) {
+            table[i][0] = String.valueOf(i);
+            table[i][1] = String.valueOf(this.uniqueList.get(i));
+            table[i][2] = String.valueOf(this.occurrencesList.get(i));
+            table[i][3] = String.valueOf(this.charsProbabilityList.get(i));
+            table[i][4] = String.valueOf("0");
 
         }
         return table;
     }
-    public String[][] sortArray(String[][] tablica)
-    {
+
+    public String[][] sortArray(String[][] tablica) {
         Arrays.sort(tablica, new Comparator<String[]>() {
             @Override
             public int compare(String[] o1, String[] o2) {
-                if(Double.parseDouble(o1[3])>Double.parseDouble(o2[3])) return 1;
+                if (Double.parseDouble(o1[3]) > Double.parseDouble(o2[3])) return 1;
                 else return -1;
             }
         });

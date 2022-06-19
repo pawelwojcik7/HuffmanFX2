@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.PriorityQueue;
 
 class Huffman {
-    // Huffman Tree Traversing and storing the Huffman Codes in a dictionary.
+
     public static void encode_huffman(Huffman_Node root_node, String str,
                                       Map<Character, String> huffman_Code) {
         if (root_node == null) {
@@ -22,7 +22,7 @@ class Huffman {
         encode_huffman(root_node.right, str + '1', huffman_Code);
     }
 
-    // Huffman Tree Traversing and decoding the encoded string
+
     public static int decode_huffman(Huffman_Node root_node, int index, StringBuilder sb) {
         if (root_node == null) {
             return index;
@@ -41,7 +41,7 @@ class Huffman {
         return index;
     }
 
-    // This function checks if Huffman Tree contains only one single node
+
     public static boolean is_Leaf(Huffman_Node root_node) {
         return root_node.left == null && root_node.right == null;
     }
@@ -54,7 +54,6 @@ class Huffman {
             return null;
         }
 
-        // Calculate the frequency of each character and store it in a map of dict
 
         Map<Character, Integer> frequency = new HashMap<>();
         for (char c : text.toCharArray()) {
@@ -62,53 +61,48 @@ class Huffman {
         }
 
 
-        // priority queue to store nodes of the Huffman tree
-        // the highest priority item has the lowest frequency
         SortByValue sort = new SortByValue();
-        //frequency=sort.sortByValue(true, (HashMap<Character, Integer>) frequency);
+
         PriorityQueue<Huffman_Node> prio_queue;
         prio_queue = new PriorityQueue<>(Comparator.comparingInt(l -> l.frequency));
 
-        // leaf node for each character, adding it to the priority queue.
 
         for (var entry : frequency.entrySet()) {
             prio_queue.add(new Huffman_Node(entry.getKey(), entry.getValue()));
         }
 
-        //repeat the process till there is more than one node in the queue
+
         while (prio_queue.size() != 1) {
-            // Then remove the two nodes with the highest priority and lowest frequency
+
 
             Huffman_Node left = prio_queue.poll();
             Huffman_Node right = prio_queue.poll();
 
-            // Now create a new internal node with two children nodes, and the frequency will be the some of both nodes; add the new node to the priority queue.
+
             int sum = left.frequency + right.frequency;
             prio_queue.add(new Huffman_Node(null, sum, left, right));
         }
 
         Huffman_Node root_node = prio_queue.peek();
-        // Huffman tree Traversing and storing the Huffman codes in a dict or map
         Map<Character, String> huffmanCode = new HashMap<>();
         encode_huffman(root_node, "", huffmanCode);
 
-// Display the Huffman codes
+
         System.out.println("The Huffman Codes for the given text are: " + huffmanCode);
         System.out.println("The original text is: " + text);
-        huffmanCode.forEach((c,s)-> {
-            for(int i=0;i<tm.uniqueList.size();i++)
-            {
-                if(tm.uniqueList.get(i).equals(c)) tm.tab[i][4]=s;
+        huffmanCode.forEach((c, s) -> {
+            for (int i = 0; i < tm.uniqueList.size(); i++) {
+                if (tm.uniqueList.get(i).equals(c)) tm.tab[i][4] = s;
             }
         });
-        // display the encoded string
+
         StringBuilder sb = new StringBuilder();
         for (char c : text.toCharArray()) {
             sb.append(huffmanCode.get(c));
         }
 
         System.out.println("The encoded text is: " + sb);
-        tm.encoded=sb.toString();
+        tm.encoded = sb.toString();
         System.out.print("The decoded text is: ");
 
         if (is_Leaf(root_node)) {
@@ -117,21 +111,20 @@ class Huffman {
                 System.out.print(root_node.charac);
             }
         } else {
-            // Huffman Tree traversing with decoding the encoded string
             int index = -1;
             while (index < sb.length() - 1) {
                 index = decode_huffman(root_node, index, sb);
             }
         }
-        levelAndIndexSet(root_node, 1,1);
+        levelAndIndexSet(root_node, 1, 1);
         return root_node;
     }
-    public static void levelAndIndexSet(Huffman_Node node, int level, int index)
-    {
-        node.level=level;
-        node.index=index;
-        if(node.left!=null) levelAndIndexSet(node.left, level+1,index*2-1);
-        if(node.right!=null) levelAndIndexSet(node.right, level+1, index*2);
+
+    public static void levelAndIndexSet(Huffman_Node node, int level, int index) {
+        node.level = level;
+        node.index = index;
+        if (node.left != null) levelAndIndexSet(node.left, level + 1, index * 2 - 1);
+        if (node.right != null) levelAndIndexSet(node.right, level + 1, index * 2);
     }
 
 }

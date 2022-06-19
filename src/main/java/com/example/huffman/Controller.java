@@ -47,35 +47,26 @@ public class Controller implements Initializable {
         root = Main_Build_HuffmanTree(tm);
 
         data = tm.tab;
-        data=tm.sortArray(data);
+        data = tm.sortArray(data);
         Double entropy = 0.00;
         Double wordSize = 0.00;
-        for(int i=0;i<tm.uniqueList.size();i++){
+        for (int i = 0; i < tm.uniqueList.size(); i++) {
             entropy = entropy + Double.parseDouble(data[i][3]) * (Math.log(1 / Double.parseDouble(data[i][3])) / Math.log(2));
-        wordSize=wordSize + Double.parseDouble(data[i][3]) * data[i][4].length();
+            wordSize = wordSize + Double.parseDouble(data[i][3]) * data[i][4].length();
         }
         ObservableList<Data> list = FXCollections.observableArrayList();
-        for(int i = 0; i < tm.uniqueList.size(); i++) {
+        for (int i = 0; i < tm.uniqueList.size(); i++) {
             Data wiersz = new Data(data[i][0], data[i][1], data[i][2], data[i][3], data[i][4]);
             list.add(wiersz);
         }
         tableView.setItems(list);
-        textArea2.setText("Zaszyfrowane słowo : "+ tm.encoded + "\n" + "Wartośc entropii : "+ entropy +"\n" + "Średnia długość słowa kodowego : " + wordSize+"\n" + "Zaokrąglona średnia długość słowa kodowego : " + Math.round(wordSize));
+        textArea2.setText("Zaszyfrowane słowo : " + tm.encoded + "\n" + "Wartośc entropii : " + entropy + "\n" + "Średnia długość słowa kodowego : " + wordSize + "\n" + "Zaokrąglona średnia długość słowa kodowego : " + Math.round(wordSize));
 
-
-
-    }
-
-    public void FGK(ActionEvent e) {
-
-    }
-
-    public void Vitter(ActionEvent e) {
 
     }
 
     public void drzewo(ActionEvent e) throws IOException {
-        if(root!=null) {
+        if (root != null) {
             TreeViewer treeViewer = new TreeViewer(root);
         }
     }

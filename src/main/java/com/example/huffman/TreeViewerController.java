@@ -18,7 +18,7 @@ public class TreeViewerController {
     private Pane pane;
     Huffman_Node node;
     ArrayList<Integer> list2;
-    ArrayList<Integer> list=new ArrayList<Integer>();
+    ArrayList<Integer> list = new ArrayList<Integer>();
 
     void initData(Huffman_Node huffman_node) {
         node = huffman_node;
@@ -29,43 +29,39 @@ public class TreeViewerController {
 
     }
 
-    void inittt(int i)
-    {
-        Huffman_Node node1=node;
-        list2=new ArrayList<Integer>();
+    void inittt(int i) {
+        Huffman_Node node1 = node;
+        list2 = new ArrayList<Integer>();
         list2.add(1);
-        i=i+1;
-        if(node1.left!=null)initList2(i,node1.left);
-        if(node1.right!=null) initList2(i,node1.right);
+        i = i + 1;
+        if (node1.left != null) initList2(i, node1.left);
+        if (node1.right != null) initList2(i, node1.right);
     }
-    void initList2(int i, Huffman_Node node1)
-    {
-        if(list2.size()<=i) list2.add(1);
+
+    void initList2(int i, Huffman_Node node1) {
+        if (list2.size() <= i) list2.add(1);
         else {
-            list2.set(i, list2.get(i)+1);
+            list2.set(i, list2.get(i) + 1);
         }
 
-        if(node1.left!=null)
-        {
-            initList2(i+1,node1.left);
+        if (node1.left != null) {
+            initList2(i + 1, node1.left);
         }
-        if(node1.right!=null)
-        {
-            initList2(i+1,node1.right);
+        if (node1.right != null) {
+            initList2(i + 1, node1.right);
         }
     }
 
 
-    public void drawNodes(Huffman_Node root,int y, int i)
-    {
+    public void drawNodes(Huffman_Node root, int y, int i) {
 
-        if(list.size()==i) list.add(1);
+        if (list.size() == i) list.add(1);
         else {
-            list.set(i, list.get(i)+1);
+            list.set(i, list.get(i) + 1);
         }
-        int x= (int) Math.floor(1600/(list2.get(i)+1))* list.get(i);
-        root.x=x;
-        root.y=y;
+        int x = (int) Math.floor(1600 / (list2.get(i) + 1)) * list.get(i);
+        root.x = x;
+        root.y = y;
         if (root.charac != null) {
             Circle circle = new Circle(x, y, 25, Paint.valueOf("#EC7063"));
             pane.getChildren().add(circle);
@@ -81,28 +77,24 @@ public class TreeViewerController {
         }
 
         if (root.left != null) {
-            int x2= (int) Math.floor(1600/(list2.get(i+1)+1));
-            //Line line = new Line(x2, y + 80, x - 10, y + 10);
-            //pane.getChildren().add(line);
-            drawNodes( root.left, y+90, i+1);
+            int x2 = (int) Math.floor(1600 / (list2.get(i + 1) + 1));
+            drawNodes(root.left, y + 90, i + 1);
         }
         if (root.right != null) {
-            int x2= (int) Math.floor(1600/(list2.get(i+1)+1));
-            //Line line = new Line(2*x2, y + 80, x + 10, y + 10);
-            //pane.getChildren().add(line);
-            drawNodes( root.right, y+90, i+1);
+            int x2 = (int) Math.floor(1600 / (list2.get(i + 1) + 1));@(3TFR4)
+            drawNodes(root.right, y + 90, i + 1);
         }
 
     }
-    public void drawLines(Huffman_Node root)
-    {
+
+    public void drawLines(Huffman_Node root) {
         if (root.left != null) {
-            Line line = new Line(root.x-15,root.y+20,root.left.x,root.left.y-25);
+            Line line = new Line(root.x - 15, root.y + 20, root.left.x, root.left.y - 25);
             pane.getChildren().add(line);
             drawLines(root.left);
         }
         if (root.right != null) {
-            Line line = new Line(root.x+15,root.y+20,root.right.x-15,root.right.y-20);
+            Line line = new Line(root.x + 15, root.y + 20, root.right.x - 15, root.right.y - 20);
             pane.getChildren().add(line);
             drawLines(root.right);
 
